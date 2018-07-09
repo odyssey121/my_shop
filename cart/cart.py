@@ -39,8 +39,8 @@ class Cart:
             item['price']=Decimal(item['price'])
             item['total_price']=item['price']*item['quantity']
             yield item #возвращается сериализуемый словарь
-    def __len__(self):
-        return sum(item['quantity'] for item in self.cart.values())
+
+
 
     def clean(self):
         del self.session[CART_SESSION_ID]
