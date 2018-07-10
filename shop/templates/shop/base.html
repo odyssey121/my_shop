@@ -13,11 +13,19 @@
 
   <section id='header'>
     <div class='top container'>
-      Мой онлайн магазин
+      <a href="{% url 'shop:ProductList'%}">Мой магазин</a>
     </div>
     <div class='top-bl'>
       <div class='container'>
-        <div class='cart'>Ваша корзина пуста</div>
+        <div class='cart'>
+          {%with total_items=cart|length%}
+          {% if cart|length > 0 %}
+            Ваша корзина:
+            <a href="{%url 'cart:CartDetail'}">{{total_items}} тов. {{cart.get_total_price}} руб.</a>
+          {%else%}
+            Ваша корзина Пуста
+          {%endif%}
+          {%endwith%}
       </div>
     </div>
   </section>

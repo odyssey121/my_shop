@@ -1,6 +1,7 @@
 {%extends 'shop/base.html'%}
 {%block title%}Ваша корзина товаров{%endblock%}
 {%block content%}
+{%load static%}
 
   <h1>Ваша корзина товаров</h1>
   <table class='cart'>
@@ -19,13 +20,16 @@
       {%with product=item.product%}
       <tr>
       <td>
-      <a href='{{product.get_obsolute_url}}'>
-        <img src='{{product.image.url}}' alt="" />
-      </a>
+      {%if product.image%}<a href='{{product.get_obsolute_url}}'>
+        <img src='{{product.image.url}}' alt="" /></a>
+      {%else%}
+        <img src="{%static 'no_image.jpg'%}"</img>
+
+      {%endif%}
       </td>
       <td>{{product.name}}</td>
       <td>{{item.quantity}}</td>
-      <td><a href="{% url 'cart:CartRemove' product.id}">Удалить</a></td>
+      <td><a href="{% url 'cart:CartRemove' product.id%}">Удалить</a></td>
       <td class='num'>{{item.total_price}} руб. </td>
       <td class='num'>{{item.price}} руб. </td>
     </tbody>
@@ -36,4 +40,5 @@
       <a href="{%url 'shop:ProductList'%}" class='btn'>Продолжить Шоппинг</a>
       <a href='#'>Оформить заказ</a>
     </p>
+    {{sql_queries}}{{debug}}{{user}}
 {%endblock%}
