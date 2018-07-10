@@ -8,6 +8,7 @@ def CartDetail(request):
     cart=Cart(request)
     context={'cart':cart}
     return render(request,'cart/detail.html',context)
+
 @require_POST
 def CartAdd(request,product_id):
     cart=Cart(request)
@@ -15,7 +16,7 @@ def CartAdd(request,product_id):
     form=CartAddProductForm(request.POST)
     if form.is_valid():
         cd=form.cleaned_data
-        cart.add(product=product,quantity=cd['quantity'],update_quantity=cd['update'])
+        cart.add(product=product,quantity=cd['quantity'])
         return redirect('cart:CartDetail')
 
 def CartRemove(request,product_id):
