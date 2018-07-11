@@ -2,10 +2,25 @@
 {%block title%}Ваша корзина товаров{%endblock%}
 {%block content%}
 {%load static%}
-
+<style type="text/css">
+   TABLE {
+    border-collapse: collapse; /* Убираем двойные границы между ячейками */
+     /* Цвет фона таблицы */
+    border: 4px solid #000; /* Рамка вокруг таблицы */
+   }
+   TD, TH {
+    padding: 5px; /* Поля вокруг текста */
+    border: 2px solid black; /* Рамка вокруг ячеек */
+    text-align: : center; /* тут не работает!!!!!!!! */
+   }
+   TD {
+    background: #fff; /* Цвет фона ячеек */
+    text-align: center; /* Выравнивание по центру */
+  }
+</style>
   <h1>Ваша корзина товаров</h1>
-  <table class='cart'>
-    <thread>
+  <table class='table-cart'>
+    <thead>
       <tr>
         <th>Изображение</th>
         <th>Продукт</th>
@@ -14,31 +29,35 @@
         <th>Полная цена</th>
         <th>Цена</th>
       </tr>
-    </thread>
+    </thead>
     <tbody>
     {%for item in cart%}
       {%with product=item.product%}
       <tr>
-      <td>
-      {%if product.image%}<a href='{{product.get_obsolute_url}}'>
-        <img src='{{product.image.url}}' alt="" /></a>
-      {%else%}
-        <img src="{%static 'no_image.jpg'%}"</img>
-
-      {%endif%}
-      </td>
+        <td>
+          {%if product.image%}<a href='{{product.get_obsolute_url}}'>
+            <img src='{{product.image.url}}' alt="" /></a>
+          {%else%}
+            <img src="{%static 'no_image.jpg'%}"></img>
+          {%endif%}
+        </td>
       <td>{{product.name}}</td>
       <td>{{item.quantity}}</td>
       <td><a href="{% url 'cart:CartRemove' product.id%}">Удалить</a></td>
       <td class='num'>{{item.total_price}} руб. </td>
       <td class='num'>{{item.price}} руб. </td>
-    </tbody>
-    </table>
+    </tr>
     {%endwith%}
-    {%endfor%}
+  {%endfor%}
+    <tr class='total'>
+      <td>Total</td>
+      <td colspan='4'></td>
+      <td class='num'>{{cart.get_total_price}} руб.</td>
+    </tr>
+    </tbody>
+  </table>
     <p class='text-right'>
       <a href="{%url 'shop:ProductList'%}" class='btn'>Продолжить Шоппинг</a>
       <a href='#'>Оформить заказ</a>
     </p>
-    {{sql_queries}}{{debug}}{{user}}
 {%endblock%}
