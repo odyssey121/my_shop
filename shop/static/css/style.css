@@ -73,16 +73,19 @@ form.add input[type="submit"]{
 .table-cart{
   width: 100%;
   margin: 10px 0;
+  border: 2px;
+  background: : black;
 }
 .cart-img{
   width: 10%;
 }
 th, td{
   padding: 5px;
+  color:black;
 }
 thead{
   background: #2a6496;
-  color: white;
+  color: black;
 }
 .btn{
   background: #2a6496;
