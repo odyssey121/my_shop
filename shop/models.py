@@ -35,6 +35,8 @@ class Product(models.Model):
             return self.name
         def get_absolute_url(self):
             return reverse('shop:ProductDetail',args=[self.id,self.slug])
+        def all_order_items(self):
+            return sum(item.quantity for item in self.order_items.all())
 class Some(models.Model):
     slug=models.SlugField(max_length=200,db_index=True)
     name=models.CharField(max_length=200)

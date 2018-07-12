@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^cart/',include('cart.urls',namespace='cart')),
     re_path(r'^',include('shop.urls',namespace='shop')),
+    re_path(r'^order/',include('order.urls',namespace='order')),
 ]
 
 #if settings
