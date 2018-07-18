@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from .models import OrderItem
 from .forms import OrderCreateForm
 from cart.cart import Cart
+from .tasks import OrderCreated
+from django.urls import reverse
 
 # Create your views here.
 def OrderCreate(request):
@@ -13,6 +15,10 @@ def OrderCreate(request):
             for item in cart:
                 OrderItem.objects.create(order=order,quantity=item['quantity'],product=item['product'],price=item['price'])
             cart.clear()
-            return render(request,'orders/order/created.html',{'order':order})
+            #Ассинхроная отправка сообщений
+            OrderCreated.delay(order.id)
+            request.session['order_id']=order.id
+            return redirect(reverse('payment:process'))
+            
     form=OrderCreateForm
     return render(request,'orders/order/create.html',{'form':form})

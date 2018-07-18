@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'shop',
     'cart',
     'order',
+    'paypal.standard.ipn', #paypal-django some thing
+    'payment'
 ]
 
 MIDDLEWARE = [
@@ -52,7 +54,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
-
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 ROOT_URLCONF = 'myshop.urls'
 
 TEMPLATES = [
@@ -125,3 +127,12 @@ CART_SESSION_ID = 'cart'
 STATIC_URL = '/static/'
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media/')
+#Paypal
+PAYPAL_RECEIVER_EMAIL = 'odyssey121@mail.ru'
+PAYPAL_TEST = True
+#Smpt config
+#EMAIL_USE_TLS = True
+#EMAIL_HOST = 'smtp.gmail.com'
+#EMAIL_HOST_USER = 'shirnin@prompostavka.ru'
+#EMAIL_HOST_PASSWORD =
+#EMAIL_PORT = 587
