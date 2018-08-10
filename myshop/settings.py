@@ -25,7 +25,9 @@ SECRET_KEY = 'p9k$clkabj09w$5y!qp@zsd-og2))(qk^w151m)18-k85ce6bt'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+'6fb15fde.ngrok.io',
+'localhost',]
 
 
 # Application definition
@@ -42,7 +44,7 @@ INSTALLED_APPS = [
     'cart',
     'order',
     'paypal.standard.ipn', #paypal-django some thing
-    'payment'
+    'payment',
 ]
 
 MIDDLEWARE = [
@@ -128,11 +130,11 @@ STATIC_URL = '/static/'
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media/')
 #Paypal
-PAYPAL_RECEIVER_EMAIL = 'odyssey121@mail.ru'
+PAYPAL_RECEIVER_EMAIL = 'shirnin@prompostavka.ru'
 PAYPAL_TEST = True
 #Smpt config
 #EMAIL_USE_TLS = True
 #EMAIL_HOST = 'smtp.gmail.com'
 #EMAIL_HOST_USER = 'shirnin@prompostavka.ru'
-#EMAIL_HOST_PASSWORD =
+#EMAIL_HOST_PASSWORD =''
 #EMAIL_PORT = 587

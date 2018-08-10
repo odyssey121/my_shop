@@ -19,6 +19,6 @@ def OrderCreate(request):
             OrderCreated.delay(order.id)
             request.session['order_id']=order.id
             return redirect(reverse('payment:process'))
-            
+
     form=OrderCreateForm
     return render(request,'orders/order/create.html',{'form':form})

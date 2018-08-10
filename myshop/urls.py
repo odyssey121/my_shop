@@ -25,6 +25,7 @@ urlpatterns = [
     re_path(r'^',include('shop.urls',namespace='shop')),
     re_path(r'^order/',include('order.urls',namespace='order')),
     re_path(r'^paypal/',include('paypal.standard.ipn.urls')),
+    re_path(r'^payment/',include('payment.urls',namespace='payment')),
 ]
 
 #if settings
